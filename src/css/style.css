@@ -1,6 +1,9 @@
+/* style.css */
+
 :root {
   --font-body: Arial, Helvetica, sans-serif;
   --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  
   /* colors */
   --primary-color: #f0a868;
   --secondary-color: #525b0f;
@@ -26,20 +29,24 @@ body {
   color: var(--dark-grey);
 }
 
-img {
+/* Global Media Constraints */
+img, svg {
   max-width: 100%;
+  height: auto;
 }
 
 header {
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
 }
 
 p {
   padding: 0.75rem;
 }
 
+/* Base Logo Styles */
 .logo {
   line-height: 60px;
   width: 245px;
@@ -48,91 +55,107 @@ p {
   font-size: 30px;
   text-align: right;
   font-family: var(--font-headline);
+  align-items: center;
 }
 
 .logo img {
   width: 60px;
   height: 60px;
+  object-fit: contain;
 }
 
 .logo a {
   text-decoration: none;
-  color: var(--font-body);
+  color: var(--dark-grey);
 }
 
+/* Hero Section Banner */
 .hero {
   position: relative;
 }
 
+/* Centers the overlapping absolute banner logo */
 .hero .logo {
   position: absolute;
-  left: calc(50% - 60px);
-  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -20px;
   background-color: white;
+  z-index: 10;
 }
 
+/* Overriding square badge variation for the Hero section */
 .logo--square {
-  font-size: var(--small-font);
-  width: 110px;
-  height: 80px;
-
+  font-size: 1.1rem !important;
+  width: 130px !important;
+  height: auto !important;
+  padding: 0.5rem;
   flex-direction: column;
-  align-items: flex-end;
   box-shadow: 1px 1px 4px var(--light-grey);
   justify-content: center;
   align-items: center;
-  line-height: 1;
+  line-height: 1.2 !important;
 }
 
 .logo--square img {
-  width: 90px;
-  height: 90px;
-  margin-top: -1.3em;
+  width: 50px !important;
+  height: 50px !important;
+  margin-top: 0 !important;
 }
 
 .logo--square > div {
-  margin-top: -1.7em;
+  margin-top: 0.25rem !important;
 }
 
-/* utility classes */
+/* Utility classes */
 .highlight {
   color: var(--tertiary-color);
-}
-
-button {
-  padding: 0.5em 2em;
-  background-color: var(--secondary-color);
-  color: white;
-  margin: auto;
-  display: block;
-  border: 0;
-  font-size: var(--large-font);
-  cursor: pointer;
 }
 
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
 
-/* End utility classes */
+/* Button Component Styles */
+button {
+  padding: 0.5em 2em;
+  background-color: var(--secondary-color);
+  color: white;
+  border: 0;
+  font-size: var(--large-font);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.02);
+}
+
+/* Utility to center a button when inside grids or cards */
+.btn-centered {
+  margin: auto;
+  display: block;
+}
 
 /* Cart icon styles */
 .cart {
-  padding-top: 1em;
+  padding-top: 0.5em;
   position: relative;
   text-align: center;
 }
 
-.cart svg {
-  width: 25px;
+.cart svg, .cart-icon svg {
+  width: 35px;
+  height: auto;
+  fill: var(--dark-grey);
+  transition: fill 0.2s ease;
 }
 
-.cart:hover svg {
-  fill: gray;
+.cart:hover svg, .cart-icon:hover svg {
+  fill: var(--primary-color);
 }
 
-/* End cart icon styles */
-
+/* Mission section overlay */
 .mission {
   position: absolute;
   top: 1rem;
@@ -140,17 +163,17 @@ button {
   right: 0;
   line-height: 1.3;
   width: 100%;
-  background-color: var(--dark-grey);
+  background-color: rgba(48, 48, 48, 0.85);
   color: var(--light-grey);
-  opacity: 0.8;
 }
 
 .mission p {
   margin: 0 auto;
-  width: 50%;
+  width: 75%;
   text-align: center;
 }
 
+/* Product grid system */
 .products {
   margin-top: 2rem;
   padding: 1rem;
@@ -161,6 +184,8 @@ button {
   flex-flow: row wrap;
   list-style-type: none;
   justify-content: center;
+  gap: 15px;
+  padding: 0;
 }
 
 .product-list a {
@@ -168,13 +193,26 @@ button {
   color: var(--dark-grey);
 }
 
-/* Styles for product lists */
+/* Structured Product Card Alignment */
 .product-card {
-  flex: 1 1 45%;
-  margin: 0.25em;
-  padding: 0.5em;
+  flex: 1 1 calc(50% - 15px);
+  margin: 0;
+  padding: 1em;
   border: 1px solid var(--light-grey);
   max-width: 250px;
+  text-align: center;
+  background: #ffffff;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Aligns contents evenly */
+}
+
+.product-card img {
+  width: 100%;
+  height: 160px;           /* Enforces identical spatial blocks */
+  object-fit: contain;     /* Preserves image aspect ratios without stretching */
+  margin: 0 auto;
 }
 
 .product-card h2,
@@ -185,14 +223,15 @@ button {
 
 .card__brand {
   font-size: var(--small-font);
+  text-transform: uppercase;
+  color: gray;
 }
 
 .card__name {
   font-size: 1em;
 }
 
-/* End product list card */
-
+/* Product details view */
 .product-detail {
   padding: 1em;
   max-width: 500px;
@@ -203,13 +242,14 @@ button {
   width: 100%;
 }
 
-/* Start cart list card styles */
+/* Cart layout view structures */
 .cart-card {
   display: grid;
   grid-template-columns: 25% auto 15%;
   font-size: var(--small-font);
-  /* max-height: 120px; */
   align-items: center;
+  border-bottom: 1px solid var(--light-grey);
+  padding: 0.5rem 0;
 }
 
 .cart-card__image {
@@ -241,14 +281,46 @@ button {
   grid-column: 3;
 }
 
-@media screen and (min-width: 500px) {
+/* Breadcrumbs Styling Component */
+.breadcrumbs {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.breadcrumbs a {
+  color: var(--dark-grey);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+  color: var(--tertiary-color); /* Dynamically ties to your branding variable */
+}
+
+.breadcrumbs .breadcrumb-separator {
+  margin: 0 0.4rem;
+  color: #888;
+  user-select: none;
+}
+
+.breadcrumbs .breadcrumb-current {
+  color: #777;
+  font-weight: normal;
+}
+
+/* Responsive Breakpoints */
+@media screen and (min-width: 768px) {
   body {
     max-width: 1080px;
     margin: auto;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
   }
 
-  .mission {
-    font-size: 1.2em;
+  .mission p {
+    width: 50%;
   }
 
   .cart-card {
@@ -259,5 +331,9 @@ button {
 
 footer {
   font-size: var(--small-font);
-  padding: 1em;
+  padding: 2em 1em;
+  text-align: center;
+  background: var(--dark-grey);
+  color: var(--light-grey);
+  margin-top: 3rem;
 }
