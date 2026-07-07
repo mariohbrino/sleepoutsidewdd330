@@ -49,3 +49,23 @@ jobs:
         run: npm ci
       - name: Run format check
         run: npm run format
+
+  build:
+    name: Build Project
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: ["22.22.0"]
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - name: Install node dependencies
+        run: npm ci
+      - name: Run build
+        run: npm run build
