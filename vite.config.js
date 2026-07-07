@@ -1,12 +1,12 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: "/sleepoutsidewdd330/", 
+  // Change this from "/sleepoutsidewdd330/" to "./"
+  base: "./", 
   
   root: "src/",
 
   build: {
-    // Change this from ../dist to ../docs
     outDir: "../docs",
     rollupOptions: {
       input: {
