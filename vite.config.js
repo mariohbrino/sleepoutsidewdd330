@@ -1,29 +1,23 @@
-import { resolve } from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
+  // This ensures GitHub Pages maps your styles, layout, and images to your subfolder path
+  base: "/sleepoutsidewdd330/", 
+  
   root: "src/",
 
   build: {
     outDir: "../dist",
     rollupOptions: {
       input: {
-        main: resolve(__dirname, "src/index.html"),
-        cart: resolve(__dirname, "src/cart/index.html"),
-        checkout: resolve(__dirname, "src/checkout/index.html"),
-        product1: resolve(
-          __dirname,
-          "src/product_pages/cedar-ridge-rimrock-2.html",
-        ),
-        product2: resolve(__dirname, "src/product_pages/marmot-ajax-3.html"),
-        product3: resolve(
-          __dirname,
-          "src/product_pages/northface-alpine-3.html",
-        ),
-        product4: resolve(
-          __dirname,
-          "src/product_pages/northface-talus-4.html",
-        ),
+        // Standard relative paths from the project root folder
+        main: "src/index.html",
+        cart: "src/cart/index.html",
+        checkout: "src/checkout/index.html",
+        product1: "src/product_pages/cedar-ridge-rimrock-2.html",
+        product2: "src/product_pages/marmot-ajax-3.html",
+        product3: "src/product_pages/northface-alpine-3.html",
+        product4: "src/product_pages/northface-talus-4.html",
       },
     },
   },

@@ -1,5 +1,5 @@
 // src/js/main.js
-import { qsAll, setClick, addToWishlist } from './utils.js';
+import { qsAll, setClick, addToWishlist } from './utils.mjs';
 
 function initWishlistHandlers() {
   // Find all wishlist buttons matching our product cards
