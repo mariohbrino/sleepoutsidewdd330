@@ -1,11 +1,11 @@
 // src/js/main.js
-import { qsAll, setClick, addToWishlist } from './utils.mjs';
+import { addToWishlist, qsAll, setClick } from "./utils.mjs";
 
 function initWishlistHandlers() {
   // Find all wishlist buttons matching our product cards
-  const wishlistButtons = qsAll('.wishlist-btn');
+  const wishlistButtons = qsAll(".wishlist-btn");
 
-  wishlistButtons.forEach(button => {
+  wishlistButtons.forEach((button) => {
     // Bind click/touch handlers to every single button uniquely
     setClick(button, () => {
       // Build a dynamic product entity from the dataset parameters stored in the HTML structure
@@ -13,7 +13,7 @@ function initWishlistHandlers() {
         id: button.dataset.id,
         name: button.dataset.name,
         price: button.dataset.price,
-        image: button.dataset.img
+        image: button.dataset.img,
       };
 
       const wasAdded = addToWishlist(product);
@@ -28,8 +28,11 @@ function initWishlistHandlers() {
 }
 
 // Run setup logic immediately upon module load
-document.addEventListener('DOMContentLoaded', initWishlistHandlers);
+document.addEventListener("DOMContentLoaded", initWishlistHandlers);
 // Fallback execute in case DOMContentLoaded has already fired
-if (document.readyState === 'interactive' || document.readyState === 'complete') {
+if (
+  document.readyState === "interactive" ||
+  document.readyState === "complete"
+) {
   initWishlistHandlers();
 }

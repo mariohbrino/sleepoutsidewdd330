@@ -1,5 +1,5 @@
 // src/js/wishlistPage.js
-import { getWishlist, qs } from './utils.js';
+import { getWishlist, qs } from "./utils.js";
 
 // 1. Template function to generate the HTML markup for a single product card
 function wishlistTemplate(item) {
@@ -15,7 +15,7 @@ function wishlistTemplate(item) {
 // 2. Main function to render all items on the page
 function renderWishlist() {
   const wishlistItems = getWishlist();
-  const container = qs('#wishlist-container');
+  const container = qs("#wishlist-container");
 
   // If the wishlist is empty, show a friendly message
   if (wishlistItems.length === 0) {
@@ -24,8 +24,10 @@ function renderWishlist() {
   }
 
   // Loop through items, turn them into HTML, and join them into a single string
-  const htmlItems = wishlistItems.map(item => wishlistTemplate(item)).join('');
-  
+  const htmlItems = wishlistItems
+    .map((item) => wishlistTemplate(item))
+    .join("");
+
   // Inject the HTML string into our list container
   container.innerHTML = htmlItems;
 }

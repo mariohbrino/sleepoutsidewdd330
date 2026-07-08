@@ -1,7 +1,7 @@
 // src/js/wishlist.js
-import { getLocalStorage, setLocalStorage } from './utils.js';
+import { getLocalStorage, setLocalStorage } from "./utils.js";
 
-const WISHLIST_KEY = 'so-wishlist'; // Key name for localStorage
+const WISHLIST_KEY = "so-wishlist"; // Key name for localStorage
 
 /**
  * Retrieves the current list of items from the wishlist.
@@ -17,9 +17,9 @@ export function getWishlist() {
  */
 export function addToWishlist(product) {
   const list = getWishlist();
-  
+
   // Prevent duplicate items
-  const exists = list.some(item => item.id === product.id);
+  const exists = list.some((item) => item.id === product.id);
   if (!exists) {
     list.push(product);
     setLocalStorage(WISHLIST_KEY, list);

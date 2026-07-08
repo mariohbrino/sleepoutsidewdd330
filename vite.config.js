@@ -1,8 +1,8 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: "/sleepoutsidewdd330/", 
-  
+  base: "/sleepoutsidewdd330/",
+
   root: "src/",
 
   build: {
