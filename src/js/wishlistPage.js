@@ -1,5 +1,5 @@
 // src/js/wishlistPage.js
-import { getWishlist, qs } from './utils.js';
+import { getWishlist, qs } from './utils.mjs';
 
 // 1. Template function to generate the HTML markup for a single product card
 function wishlistTemplate(item) {

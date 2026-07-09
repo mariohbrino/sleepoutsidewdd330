@@ -1,5 +1,5 @@
 // src/js/wishlist.js
-import { getLocalStorage, setLocalStorage } from './utils.js';
+import { getLocalStorage, setLocalStorage } from './utils.mjs';
 
 const WISHLIST_KEY = 'so-wishlist'; // Key name for localStorage
 
