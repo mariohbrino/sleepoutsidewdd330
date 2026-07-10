@@ -1,1 +1,28 @@
-import{g as r,b as n}from"./utils-BEistNID.js";function e(a){if(a.ok)return a.json();throw new Error("Bad Response")}class s{constructor(t){this.category=t,this.path=`../json/${this.category}.json`}getData(){return fetch(this.path).then(e).then(t=>t)}async findProductById(t){return(await this.getData()).find(o=>o.Id===t)}}const c=new s("tents");function d(a){let t=r("so-cart");Array.isArray(t)||(t=[]),t.push(a),n("so-cart",t)}async function i(a){const t=await c.findProductById(a.target.dataset.id);d(t)}document.getElementById("addToCart").addEventListener("click",i);
+import { g as r, b as n } from "./utils-BEistNID.js";
+function e(a) {
+  if (a.ok) return a.json();
+  throw new Error("Bad Response");
+}
+class s {
+  constructor(t) {
+    (this.category = t), (this.path = `../json/${this.category}.json`);
+  }
+  getData() {
+    return fetch(this.path)
+      .then(e)
+      .then((t) => t);
+  }
+  async findProductById(t) {
+    return (await this.getData()).find((o) => o.Id === t);
+  }
+}
+const c = new s("tents");
+function d(a) {
+  let t = r("so-cart");
+  Array.isArray(t) || (t = []), t.push(a), n("so-cart", t);
+}
+async function i(a) {
+  const t = await c.findProductById(a.target.dataset.id);
+  d(t);
+}
+document.getElementById("addToCart").addEventListener("click", i);

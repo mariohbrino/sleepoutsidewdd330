@@ -14,6 +14,7 @@ export function getLocalStorage(key) {
   try {
     return data ? JSON.parse(data) : null;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(`Error parsing JSON from localStorage key "${key}":`, error);
     return null;
   }
@@ -39,7 +40,7 @@ export function setClick(elementOrSelector, callback) {
   element.addEventListener("click", callback);
 }
 
-// Get URL parameters
+//Week02 TeamActivity:  Get URL parameters
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
