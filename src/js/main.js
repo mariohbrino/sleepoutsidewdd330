@@ -1,34 +1,26 @@
-import { addToWishlist } from "./utils.mjs";
+// Attach the listener to a static container (e.g., the product list or body)
+document.addEventListener("click", (event) => {
+  // Check if the clicked element has the class "wishlist-btn"
+  if (event.target.classList.contains("wishlist-btn")) {
+    const button = event.target;
 
-function initWishlistHandlers() {
-  // Use the parent container to listen for clicks on any wishlist button
-  const productListContainer = document.querySelector(".product-list");
+    const product = {
+      id: button.dataset.id,
+      name: button.dataset.name,
+      price: button.dataset.price,
+      img: button.dataset.img,
+    };
 
-  if (!productListContainer) return;
+    addToWishlist(product);
+    alert(`${product.name} added to wishlist!`);
+  }
+});
 
-  productListContainer.addEventListener("click", (event) => {
-    // Only proceed if the element clicked is a wishlist button
-    if (event.target.matches(".wishlist-btn")) {
-      const button = event.target;
+function addToWishlist(product) {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
-      // Build the product entity from the button's data attributes
-      const product = {
-        id: button.dataset.id,
-        name: button.dataset.name,
-        price: button.dataset.price,
-        image: button.dataset.img,
-      };
-
-      const wasAdded = addToWishlist(product);
-
-      if (wasAdded) {
-        alert(`🎉 ${product.name} has been added to your wishlist!`);
-      } else {
-        alert(`👀 ${product.name} is already in your wishlist!`);
-      }
-    }
-  });
+  if (!wishlist.find((item) => item.id === product.id)) {
+    wishlist.push(product);
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  }
 }
-
-// Initialize the handler
-initWishlistHandlers();
