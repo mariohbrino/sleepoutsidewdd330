@@ -8,15 +8,31 @@ function productDetailsTemplate(product) {
   productImage.src = import.meta.env.BASE_URL + product.Image.substring(1);
   productImage.alt = product.NameWithoutBrand;
 
-  document.getElementById("productSuggestedRetailPrice").textContent =
-    `$${product.SuggestedRetailPrice} (suggested retail price)`;
-  document.getElementById("productPrice").textContent =
-    `$${product.FinalPrice} (sale price)`;
+  //Week02 Individual-Task 1: Add discount to product detail pages
+  //1. calculating and handling the retail price
+  const isDiscounted = product.FinalPrice < product.SuggestedRetailPrice;
+  const percentOff = Math.round(
+    ((product.SuggestedRetailPrice - product.FinalPrice) /
+      product.SuggestedRetailPrice) *
+      100,
+  );
+  const retailPriceElement = document.getElementById(
+    "productSuggestedRetailPrice",
+  );
+  retailPriceElement.textContent = `$${product.SuggestedRetailPrice.toFixed(2)}`;
+  if (isDiscounted) {
+    retailPriceElement.classList.add("retail-price");
+  }
+  //2. Adding the final price and inject dicount badge
+  const priceElement = document.getElementById("productPrice");
+  priceElement.innerHTML = `$${product.FinalPrice.toFixed(2)} `;
+  if (isDiscounted) {
+    priceElement.innerHTML += `<span class="discount-indicator">${percentOff}% OFF</span>`;
+  }
   document.getElementById("productColor").textContent =
     product.Colors[0].ColorName;
   document.getElementById("productDesc").innerHTML =
     product.DescriptionHtmlSimple;
-
   document.getElementById("addToCart").dataset.id = product.Id;
 }
 

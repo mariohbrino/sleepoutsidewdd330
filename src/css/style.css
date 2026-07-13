@@ -209,6 +209,25 @@ button {
   width: 100%;
 }
 
+/* Week02 Tasks: Discount and Retail Rice Indicator styling*/
+.discount-indicator {
+  color: white;
+  background-color: #d9534f;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+/* The grayed-out, crossed-out original price */
+.retail-price {
+  text-decoration: line-through;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;
