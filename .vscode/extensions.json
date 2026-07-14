@@ -1,3 +1,7 @@
 {
   "recommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 7b22aa29bc6217244f18c367a8f2f75db8044e84

@@ -1,17 +1,23 @@
 import { convertToJson } from "./utils.mjs";
 
+const baseURL = import.meta.env.VITE_SERVER_URL;
+
 export default class ProductData {
-  constructor(category) {
-    this.category = category;
-    this.path = `${import.meta.env.BASE_URL}json/${this.category}.json`;
+  constructor() {
+    // Constructor no longer needs the category; it is passed to methods
   }
-  async getData() {
-    const res = await fetch(this.path);
-    const data = await convertToJson(res);
-    return data;
+
+  // Fetch products by category from the API
+  async getData(category) {
+    const response = await fetch(`${baseURL}products/search/${category}`);
+    const data = await convertToJson(response);
+    return data.Result; // API returns data inside a 'Result' property
   }
+
+  // Fetch a single product by ID
   async findProductById(id) {
-    const products = await this.getData();
-    return products.find((item) => item.Id === id);
+    const response = await fetch(`${baseURL}product/${id}`);
+    const data = await convertToJson(response);
+    return data.Result;
   }
 }

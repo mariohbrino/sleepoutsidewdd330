@@ -1,0 +1,39 @@
+[33m2dd65ab[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32maa-individual2-task-report[m[33m)[m HEAD@{0}: checkout: moving from aa-individual2-task-report to main
+[33m2dd65ab[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32maa-individual2-task-report[m[33m)[m HEAD@{1}: checkout: moving from main to aa-individual2-task-report
+[33m2dd65ab[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32maa-individual2-task-report[m[33m)[m HEAD@{2}: checkout: moving from yourinitials--individual3 to main
+[33mc7cbe16[m[33m ([m[1;31morigin/yourinitials--individual3[m[33m, [m[1;32myourinitials--individual3[m[33m)[m HEAD@{3}: commit: Update project to use API and fix images
+[33mb119813[m HEAD@{4}: checkout: moving from yourinitials--individual3 to yourinitials--individual3
+[33mb119813[m HEAD@{5}: commit: Resolved merge conflict in product.js
+[33m94e88ad[m[33m ([m[1;31morigin/wishlist-integration[m[33m, [m[1;32mwishlist-integration[m[33m)[m HEAD@{6}: checkout: moving from wishlist-integration to yourinitials--individual3
+[33m94e88ad[m[33m ([m[1;31morigin/wishlist-integration[m[33m, [m[1;32mwishlist-integration[m[33m)[m HEAD@{7}: checkout: moving from main to wishlist-integration
+[33m94e88ad[m[33m ([m[1;31morigin/wishlist-integration[m[33m, [m[1;32mwishlist-integration[m[33m)[m HEAD@{8}: commit (merge): Resolved all merge conflicts
+[33m5d8bbe7[m HEAD@{9}: commit: Add wishlist functionality to main.js
+[33m75ddf56[m HEAD@{10}: commit: refactor: implement wishlist event delegation for dynamic stability
+[33m441a22d[m HEAD@{11}: commit (merge): fix: resolve merge conflicts and clean index.html
+[33mfa6926e[m[33m ([m[1;31morigin/old-main[m[33m)[m HEAD@{12}: checkout: moving from baseline to main
+[33m4f5f287[m[33m ([m[1;32mbaseline[m[33m)[m HEAD@{13}: checkout: moving from main to baseline
+[33mfa6926e[m[33m ([m[1;31morigin/old-main[m[33m)[m HEAD@{14}: commit: fix: resolve linting errors, quote rules, and import extensions
+[33mb1a273d[m HEAD@{15}: commit: chore: restore git tracking for source files and finalize removal of docs
+[33mb5e31d7[m HEAD@{16}: pull origin main: Merge made by the 'ort' strategy.
+[33m1712085[m HEAD@{17}: commit: fix: change vite base path to relative for render deployment
+[33m6da4a82[m HEAD@{18}: commit: chore: change build output to docs for github pages hosting
+[33m60719d1[m HEAD@{19}: commit: fix: clear css syntax error and update production build
+[33m5b62f00[m[33m ([m[1;31morigin/task/wishlist-system[m[33m, [m[1;32mtask/wishlist-system[m[33m)[m HEAD@{20}: merge task/wishlist-system: Fast-forward
+[33m613ee78[m HEAD@{21}: checkout: moving from task/wishlist-system to main
+[33m5b62f00[m[33m ([m[1;31morigin/task/wishlist-system[m[33m, [m[1;32mtask/wishlist-system[m[33m)[m HEAD@{22}: commit: fix: update css and icon paths to relative for github pages alignment
+[33m613ee78[m HEAD@{23}: checkout: moving from main to task/wishlist-system
+[33m613ee78[m HEAD@{24}: pull: Fast-forward
+[33m6bc9fd8[m[33m ([m[1;32maa--individual1[m[33m)[m HEAD@{25}: checkout: moving from initials--individual2 to main
+[33m7e1ee3f[m[33m ([m[1;32minitials--individual2[m[33m)[m HEAD@{26}: reset: moving to HEAD
+[33m7e1ee3f[m[33m ([m[1;32minitials--individual2[m[33m)[m HEAD@{27}: commit: style: force uniform product image dimensions and alignment
+[33mda1af89[m HEAD@{28}: commit: fix: restore layout alignment, remove list bullets, and constrain images
+[33ma317988[m HEAD@{29}: rebase (abort): returning to refs/heads/initials--individual2
+[33m7849066[m HEAD@{30}: pull origin main --rebase (start): checkout 784906676ed7ca8f021816042b91cd279ddbec21
+[33ma317988[m HEAD@{31}: commit: fix: resolve asset pathing issues and clean up production build warnings
+[33m6bc9fd8[m[33m ([m[1;32maa--individual1[m[33m)[m HEAD@{32}: checkout: moving from aa--individual1 to initials--individual2
+[33m6bc9fd8[m[33m ([m[1;32maa--individual1[m[33m)[m HEAD@{33}: checkout: moving from main to aa--individual1
+[33m6bc9fd8[m[33m ([m[1;32maa--individual1[m[33m)[m HEAD@{34}: checkout: moving from aa--branch-test to main
+[33mb0b29a1[m[33m ([m[1;31morigin/aa--branch-test[m[33m, [m[1;32maa--branch-test[m[33m)[m HEAD@{35}: commit: Create austin text file on feature branch
+[33m6bc9fd8[m[33m ([m[1;32maa--individual1[m[33m)[m HEAD@{36}: checkout: moving from main to aa--branch-test
+[33m6bc9fd8[m[33m ([m[1;32maa--individual1[m[33m)[m HEAD@{37}: commit: Add team Trello link and Austin to team text file
+[33mb11b2a6[m HEAD@{38}: clone: from https://github.com/donx10austin/sleepoutsidewdd330.git
