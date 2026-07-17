@@ -25,3 +25,23 @@ export async function loadHeaderFooter() {
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
 }
+
+// Added this function so it can be imported in main.js
+export function getParam(param) {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get(param);
+}
+
+// Ensure you also export these if they are used elsewhere in your project
+export function qs(selector, parent = document) {
+  return parent.querySelector(selector);
+}
+
+export function setLocalStorage(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+export function getLocalStorage(key) {
+  return JSON.parse(localStorage.getItem(key));
+}
