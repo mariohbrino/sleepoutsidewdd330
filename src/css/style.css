@@ -274,8 +274,7 @@ button:hover {
 }
 
 /* Start cart list card styles */
->>>>>>> origin/main
-.cart-card {
+>>>>>>>origin/main .cart-card {
   display: grid;
   grid-template-columns: 25% auto 15%;
   font-size: var(--small-font);
