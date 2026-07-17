@@ -4,8 +4,9 @@ function productDetailsTemplate(product) {
   document.querySelector("h2").textContent = product.Brand.Name;
   document.querySelector("h3").textContent = product.NameWithoutBrand;
 
+  // Requirement Update: Use PrimaryLarge for the detail page image
   const productImage = document.getElementById("productImage");
-  productImage.src = import.meta.env.BASE_URL + product.Image.substring(1);
+  productImage.src = product.PrimaryLarge;
   productImage.alt = product.NameWithoutBrand;
 
   // Week02 Individual-Task 1: Add discount to product detail pages
@@ -34,6 +35,7 @@ function productDetailsTemplate(product) {
     }
   }
 
+  // API Note: Ensure Colors structure is still available
   document.getElementById("productColor").textContent =
     product.Colors[0].ColorName;
   document.getElementById("productDesc").innerHTML =
@@ -49,6 +51,7 @@ export default class ProductDetail {
   }
 
   async init() {
+    // API Note: Ensure findProductById is calling the new API endpoint
     this.product = await this.dataSource.findProductById(this.productId);
     this.renderProductDetails();
 
