@@ -1,7 +1,6 @@
-// src/js/wishlist.js
-import { getLocalStorage, setLocalStorage } from './utils.js';
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
-const WISHLIST_KEY = 'so-wishlist'; // Key name for localStorage
+const WISHLIST_KEY = "so-wishlist";
 
 /**
  * Retrieves the current list of items from the wishlist.
@@ -12,16 +11,15 @@ export function getWishlist() {
 }
 
 /**
- * Adds a unique product to the wishlist.
+ * Adds a unique product to the wishlist using established utility functions.
  * @param {Object} product - The product object to add.
  */
 export function addToWishlist(product) {
-  const list = getWishlist();
-  
-  // Prevent duplicate items
-  const exists = list.some(item => item.id === product.id);
-  if (!exists) {
-    list.push(product);
-    setLocalStorage(WISHLIST_KEY, list);
+  let wishlist = getWishlist();
+
+  // Prevent adding duplicates
+  if (!wishlist.find((item) => item.id === product.id)) {
+    wishlist.push(product);
+    setLocalStorage(WISHLIST_KEY, wishlist);
   }
 }
