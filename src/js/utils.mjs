@@ -75,12 +75,20 @@ export async function loadTemplate(path) {
 }
 
 export async function loadHeaderFooter() {
-  const headerTemplate = await loadTemplate(
-    import.meta.env.BASE_URL + "/partials/header.html",
-  );
-  const footerTemplate = await loadTemplate(
-    import.meta.env.BASE_URL + "/partials/footer.html",
-  );
+  const baseUrl = import.meta.env.BASE_URL;
+  let headerTemplate = await loadTemplate(baseUrl + "partials/header.html");
+  let footerTemplate = await loadTemplate(baseUrl + "partials/footer.html");
+
+  // Replace absolute paths with base URL prefixed paths
+  const replaceAbsolutePaths = (template) =>
+    template
+      .replace(/href="\/sleepoutsidewdd330\//g, `href="${baseUrl}`)
+      .replace(/src="\/sleepoutsidewdd330\//g, `src="${baseUrl}`)
+      .replace(/href="\//g, `href="${baseUrl}`)
+      .replace(/src="\//g, `src="${baseUrl}`);
+
+  headerTemplate = replaceAbsolutePaths(headerTemplate);
+  footerTemplate = replaceAbsolutePaths(footerTemplate);
 
   const headerElement = document.getElementById("header");
   const footerElement = document.getElementById("footer");

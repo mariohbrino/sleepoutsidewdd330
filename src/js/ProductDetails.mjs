@@ -5,7 +5,7 @@ function productDetailsTemplate(product) {
   document.querySelector("h3").textContent = product.NameWithoutBrand;
 
   const productImage = document.getElementById("productImage");
-  productImage.src = import.meta.env.BASE_URL + product.Image.substring(1);
+  productImage.src = product.Images.PrimaryLarge;
   productImage.alt = product.NameWithoutBrand;
 
   //Week02 Individual-Task 1: Add discount to product detail pages

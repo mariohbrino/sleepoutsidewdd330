@@ -18,7 +18,7 @@ function cartItemTemplate(item) {
 
       <a href="#" class="cart-card__image">
         <img
-          src="${import.meta.env.BASE_URL}${item.Image.substring(1)}"
+          src="${item.Images.PrimaryLarge}"
           alt="${item.Name}"
         />
       </a>

@@ -16,6 +16,10 @@ concurrency:
 
 jobs:
   build:
+    name: Build
+    env:
+      VITE_BASE_URL: /sleepoutsidewdd330/
+      VITE_SERVER_URL: https://wdd330-backend.onrender.com/
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -42,6 +46,7 @@ jobs:
           path: ./dist
 
   deploy:
+    name: Deploy
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
