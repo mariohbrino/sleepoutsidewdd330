@@ -2,11 +2,11 @@ import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
   document.querySelector("h2").textContent = product.Brand.Name;
-  document.querySelector("h3").textContent = product.NameWithoutBrand;
+  document.querySelector("h3").textContent = product.Name;
 
   const productImage = document.getElementById("productImage");
-  productImage.src = import.meta.env.BASE_URL + product.Image.substring(1);
-  productImage.alt = product.NameWithoutBrand;
+  productImage.src = product.Images.PrimaryLarge;
+  productImage.alt = product.Name;
 
   //Week02 Individual-Task 1: Add discount to product detail pages
   //1. calculating and handling the retail price
@@ -36,7 +36,7 @@ function productDetailsTemplate(product) {
   document.getElementById("addToCart").dataset.id = product.Id;
 }
 
-export default class ProductDetail {
+export default class ProductDetails {
   constructor(productId, dataSource) {
     this.productId = productId;
     this.product = {};

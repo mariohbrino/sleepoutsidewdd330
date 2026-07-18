@@ -286,3 +286,31 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+.categories {
+  padding: 2rem 0;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.category-card {
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+}
+
+.category-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 1rem;
+}
+
+.category-card h3 {
+  margin: 0;
+}
