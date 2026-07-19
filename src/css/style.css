@@ -327,3 +327,25 @@ footer {
   text-align: center;
   margin: 1em;
 }
+
+.cart {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  min-width: 18px;
+  height: 18px;
+  font-size: 0.75rem;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 18px;
+  font-weight: bold;
+}
