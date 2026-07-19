@@ -10,8 +10,20 @@ const topCategoryHeading = (categoryName) => {
     { id: "hammocks", name: "Hammocks" },
   ];
   const topProductsElement = document.getElementById("top-products");
-  const categoryLabel = categories.find((c) => c.id === categoryName).name;
-  topProductsElement.textContent = `Top Products: ${categoryLabel}`;
+
+  // Wk03: Product Search UI formatting and displaying the search result
+  const foundCategory = categories.find((c) => c.id === categoryName);
+
+  if (foundCategory) {
+    topProductsElement.textContent = `Top Products: ${foundCategory.name}`;
+  } else {
+    const decodeSearch = decodeURI(categoryName);
+    const formattedSearch = decodeSearch
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+    topProductsElement.textContent = `Search Results: ${formattedSearch}`;
+  }
 };
 
 const category = getParam("category") || "tents";

@@ -228,6 +228,47 @@ button {
   font-size: 0.9rem;
 }
 
+/* --- Wk03:Product Search UI Navbar Styles --- */
+.search-container {
+  display: flex;
+  align-items: center;
+  margin: 0 15px;
+}
+
+.search-form {
+  display: flex;
+  gap: 5px;
+}
+
+#search-input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 200px;
+  transition: border-color 0.3s ease;
+}
+
+#search-input:focus {
+  outline: none;
+  border-color: #f0a868;
+}
+
+.search-btn {
+  padding: 8px 15px;
+  background-color: #f0a868;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: #d98e4d;
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;
@@ -279,6 +320,16 @@ button {
   .cart-card {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
+  }
+
+  /* Wk03 Individual Report Product Search UI */
+  .search-container {
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  #search-input {
+    width: 100%;
   }
 }
 

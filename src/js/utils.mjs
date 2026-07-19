@@ -91,7 +91,7 @@ export async function loadTemplate(path) {
 }
 
 export async function loadHeaderFooter() {
-  const baseUrl = import.meta.env.BASE_URL;
+  let baseUrl = import.meta.env.BASE_URL;
   let headerTemplate = await loadTemplate(baseUrl + "partials/header.html");
   let footerTemplate = await loadTemplate(baseUrl + "partials/footer.html");
 
@@ -111,9 +111,20 @@ export async function loadHeaderFooter() {
 
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
+
+  // Wk03-Individual-Task Report: Product Search Logic
+  const searchForm = document.getElementById("search-form");
+  if (searchForm) {
+    searchForm.addEventListener("submit", (e) => {
+      e.preventDefault(); //stop page from reloading
+      const searchTerm = document.getElementById("search-input").value;
+      window.location.href = `${baseUrl}product_listing/index.html?category=${searchTerm}`;
+    });
+  }
+
   updateCartCount();
 }
-  
+
 export function updateCartCount() {
   const cartItems = getLocalStorage("so-cart") || [];
   const cartCount = document.querySelector(".cart-count");
