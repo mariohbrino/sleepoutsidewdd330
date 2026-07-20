@@ -1,44 +1,24 @@
-import CheckoutProcess from "./CheckoutProcess.mjs";
-import { loadHeaderFooter } from "./utils.mjs";
+import CheckoutProcess from "./CheckoutProcess.js";
 
-function initializeCheckoutButton(
-  checkoutOrderButton,
-  checkoutFormElement,
-  checkoutProcess,
-) {
-  checkoutOrderButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    //Wk04:Individual Activity step:4
-    const checkStatus = checkoutFormElement.checkValidity();
-    checkoutFormElement.reportValidity();
-    //stop form if not valid
-    if (!checkStatus) {
-      return;
-    }
+const myCheckout = new CheckoutProcess("so-cart", ".checkout-summary");
+myCheckout.init();
 
-    if (checkoutFormElement.zip_code.value) {
-      checkoutProcess.calculateSummary();
-      checkoutProcess.checkout(checkoutFormElement);
-    } else {
-      alert("Zip Code is required");
-    }
+// Listener for zip/shipping calculation if you have it
+document
+  #("zip")
+  ?.addEventListener("blur", () => {
+    myCheckout.calculateOrdertotal();
   });
-}
 
-function initializeCheckout() {
-  const checkoutProcess = new CheckoutProcess();
-
-  const checkoutFormElement = document.getElementById("checkout_form");
-  const checkoutOrderButton = document.getElementById("checkout_order");
-
-  initializeCheckoutButton(
-    checkoutOrderButton,
-    checkoutFormElement,
-    checkoutProcess,
-  );
-
-  checkoutProcess.init();
-}
-
-loadHeaderFooter();
-initializeCheckout();
+// Listener for the checkout form submission
+document.forms["checkout"]?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  
+  // Validate form elements using HTML5 built-in validation
+  const form = document.forms["checkout"];
+  if (form.checkValidity()) {
+    myCheckout.checkout(form);
+  } else {
+    form.reportValidity();
+  }
+});

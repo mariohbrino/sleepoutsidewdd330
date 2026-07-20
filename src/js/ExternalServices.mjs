@@ -29,3 +29,15 @@ export default class ExternalServices {
     return new OrderResponse(data);
   }
 }
+
+// Add the checkout function here at the bottom
+export async function checkout(payload) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  };
+  return await fetch(`${baseURL}checkout/`, options).then(convertToJson);
+}
