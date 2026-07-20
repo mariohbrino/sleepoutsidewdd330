@@ -400,3 +400,15 @@ footer {
   line-height: 18px;
   font-weight: bold;
 }
+
+.alert {
+  background-color: orange;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #333;
+}
+.alert span {
+  cursor: pointer;
+  font-weight: bold;
+}

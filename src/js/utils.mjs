@@ -2,33 +2,26 @@
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
 }
-// or a more concise version if you are into that sort of thing:
-// export const qs = (selector, parent = document) => parent.querySelector(selector);
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
-  // Retrieve the data from local storage
   const data = localStorage.getItem(key);
-
-  // Try to retrieve the data from local storage
   try {
     const parsedData = JSON.parse(data);
     if (Array.isArray(parsedData)) {
       return parsedData;
     }
   } catch (error) {
-    // If parsing fails, that means the data is not a valid JSON array
-    // In that case, we can initialize it as an empty array
     localStorage.setItem(key, JSON.stringify([]));
   }
-
-  // If the data is not an array or if parsing fails, return an empty array
   return [];
 }
+
 // save data to local storage
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
@@ -38,11 +31,13 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
+// Refactored convertToJson to handle detailed error messages
 export async function convertToJson(res) {
+  const jsonResponse = await res.json();
   if (res.ok) {
-    return res.json();
+    return jsonResponse;
   } else {
-    throw new Error("Bad Response");
+    throw { name: "servicesError", message: jsonResponse };
   }
 }
 
@@ -77,13 +72,10 @@ export function renderWithTemplate(template, parentElement, data, callback) {
 export async function loadTemplate(path) {
   try {
     const response = await fetch(path);
-
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-
     const template = await response.text();
-
     return template;
   } catch (error) {
     // console.error(error);
@@ -95,7 +87,6 @@ export async function loadHeaderFooter() {
   let headerTemplate = await loadTemplate(baseUrl + "partials/header.html");
   let footerTemplate = await loadTemplate(baseUrl + "partials/footer.html");
 
-  // Replace absolute paths with base URL prefixed paths
   const replaceAbsolutePaths = (template) =>
     template
       .replace(/href="\/sleepoutsidewdd330\//g, `href="${baseUrl}`)
@@ -112,30 +103,46 @@ export async function loadHeaderFooter() {
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
 
-  // Wk03-Individual-Task Report: Product Search Logic
   const searchForm = document.getElementById("search-form");
   if (searchForm) {
     searchForm.addEventListener("submit", (e) => {
-      e.preventDefault(); //stop page from reloading
+      e.preventDefault();
       const searchTerm = document.getElementById("search-input").value;
       window.location.href = `${baseUrl}product_listing/index.html?category=${searchTerm}`;
     });
   }
-
   updateCartCount();
 }
 
 export function updateCartCount() {
   const cartItems = getLocalStorage("so-cart") || [];
   const cartCount = document.querySelector(".cart-count");
-
   if (cartCount) {
     cartCount.textContent = cartItems.length;
-
     if (cartItems.length === 0) {
       cartCount.style.display = "none";
     } else {
       cartCount.style.display = "inline-block";
     }
+  }
+}
+
+// Added for Stage 5: Unhappy Path
+export function alertMessage(message, scroll = true) {
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+  alert.innerHTML = `<p>${message}</p><span>X</span>`;
+
+  alert.addEventListener("click", function (e) {
+    if (e.target.tagName === "SPAN") {
+      main.removeChild(this);
+    }
+  });
+
+  const main = document.querySelector("main");
+  main.prepend(alert);
+
+  if (scroll) {
+    window.scrollTo(0, 0);
   }
 }
