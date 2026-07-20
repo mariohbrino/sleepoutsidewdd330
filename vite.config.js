@@ -2,14 +2,11 @@ import { resolve } from "path";
 import { defineConfig, loadEnv } from "vite";
 
 export default defineConfig(({ mode }) => {
-  // Load env file from src directory
   const env = loadEnv(mode, resolve(__dirname, "src"), "");
 
   return {
     root: "src/",
-
     base: env.VITE_BASE_URL || "/",
-
     build: {
       outDir: "../dist",
       rollupOptions: {
