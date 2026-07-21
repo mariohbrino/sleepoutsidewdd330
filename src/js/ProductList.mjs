@@ -38,7 +38,21 @@ export default class ProductList {
     const list = await this.dataSource.getData(this.category);
     this.renderList(list);
   }
+
+  //Wk03:Product Search UI
+  //(Adding a fallback message to handle the user experience incase of empty search result happen)
   renderList(list) {
+    //check for empty array
+    if (list.length === 0) {
+      //Then display message
+      this.listElement.innerHTML = `
+        <div class="empty-search-fallback">
+          <h3>No products found</h3>
+          <p>We couldn't find any products matching your search. Try checking your spelling or using a different word.</p>
+        </div>
+      `;
+      return;
+    }
     renderListWithTemplate(productCardTemplate, this.listElement, list);
   }
 }
