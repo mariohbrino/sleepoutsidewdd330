@@ -19,7 +19,7 @@
       <section class="products">
         <h2>Review & Place your Order</h2>
 
-        <form class="checkout-form" method="POST">
+        <form id="checkout_form" class="checkout-form" method="POST">
           <label for="firstname">First Name</label>
           <input id="firstname" type="text" name="firstname" required />
           <label for="lastname">Last Name</label>
@@ -61,15 +61,15 @@
           <label for="security_code">Security Code</label>
           <input id="security_code" type="text" name="security_code" required />
 
-          <button id="checkoutOrder">Checkout</button>
+          <button id="checkout_order">Checkout</button>
         </form>
       </section>
 
       <div id="checkout_summary">
-        <p>Subtotal: <strong id="subtotal-value"></strong></p>
-        <p>Tax: <strong id="tax"></strong></p>
-        <p>Shipping Estimate: <strong id="shipping-estimate"></strong></p>
-        <p>Order Total: <strong id="order-total"></strong></p>
+        <p>Subtotal: <strong id="subtotal-value">$0.00</strong></p>
+        <p>Tax: <strong id="tax">$0.00</strong></p>
+        <p>Shipping Estimate: <strong id="shipping-estimate">$0.00</strong></p>
+        <p>Order Total: <strong id="order-total">$0.00</strong></p>
       </div>
     </main>
 

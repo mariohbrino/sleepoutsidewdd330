@@ -139,3 +139,38 @@ export function updateCartCount() {
     }
   }
 }
+
+export function calculateItemSubTotal(cartItems) {
+  let subtotal = 0;
+  cartItems.forEach((item) => {
+    const itemSubtotal = item.FinalPrice * item.Quantity;
+    subtotal += itemSubtotal;
+  });
+  return subtotal;
+}
+
+export function calculateSummary(cartItems, rates) {
+  let subtotal = 0;
+  let taxesAmount = 0;
+  let shippingAmount = 0;
+
+  cartItems.forEach((item, index) => {
+    const itemSubtotal = item.FinalPrice * item.Quantity;
+    subtotal += itemSubtotal;
+    if (index == 0) {
+      shippingAmount += rates.shippingRate;
+    } else {
+      shippingAmount += rates.shippingRateAddicional;
+    }
+  });
+
+  taxesAmount = subtotal * rates.taxRate;
+
+  const orderTotal = subtotal + taxesAmount + shippingAmount;
+
+  return {
+    orderTotal,
+    taxesAmount,
+    shippingAmount,
+  };
+}
