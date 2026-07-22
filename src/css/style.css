@@ -422,3 +422,9 @@ footer {
   line-height: 18px;
   font-weight: bold;
 }
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

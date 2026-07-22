@@ -18,7 +18,59 @@
     <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
+
+        <form class="checkout-form" method="POST">
+          <label for="firstname">First Name</label>
+          <input id="firstname" type="text" name="firstname" required />
+          <label for="lastname">Last Name</label>
+          <input id="lastname" type="text" name="lastname" required />
+
+          <label for="street_address">Street Address</label>
+          <input
+            id="street_address"
+            type="text"
+            name="street_address"
+            required
+          />
+
+          <label for="city">City</label>
+          <input id="city" type="text" name="city" required />
+
+          <label for="state">State</label>
+          <input id="state" type="text" name="state" required />
+
+          <label for="zip_code">Zip Code</label>
+          <input id="zip_code" type="text" name="zip_code" required />
+
+          <label for="credit_cardnumber">Credit Card Number</label>
+          <input
+            id="credit_cardnumber"
+            type="text"
+            name="credit_cardnumber"
+            required
+          />
+
+          <label for="expiration_data">Expiration Date</label>
+          <input
+            id="expiration_data"
+            type="text"
+            name="expiration_data"
+            required
+          />
+
+          <label for="security_code">Security Code</label>
+          <input id="security_code" type="text" name="security_code" required />
+
+          <button id="checkoutOrder">Checkout</button>
+        </form>
       </section>
+
+      <div id="checkout_summary">
+        <p>Subtotal: <strong id="subtotal-value"></strong></p>
+        <p>Tax: <strong id="tax"></strong></p>
+        <p>Shipping Estimate: <strong id="shipping-estimate"></strong></p>
+        <p>Order Total: <strong id="order-total"></strong></p>
+      </div>
     </main>
 
     <footer id="footer"></footer>
