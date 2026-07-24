@@ -4,6 +4,7 @@
   /* colors */
   --primary-color: #f0a868;
   --secondary-color: #525b0f;
+  --accent-color: #6c7811;
   --tertiary-color: #8a470c;
   --light-grey: #d0d0d0;
   --medium-grey: #606060;
@@ -110,6 +111,10 @@ button {
   border-radius: 4px;
   font-size: var(--large-font);
   cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--accent-color);
 }
 
 .divider {
@@ -475,6 +480,10 @@ label {
   color: white;
   text-decoration: none;
   border-radius: 4px;
+}
+
+.checkout-link:hover {
+  background-color: #d98e4d;
 }
 
 .checkout-form {
