@@ -353,6 +353,11 @@ button {
   #search-input {
     width: 100%;
   }
+
+  .checkout-form {
+    max-width: 600px;
+    margin: auto;
+  }
 }
 
 footer {
