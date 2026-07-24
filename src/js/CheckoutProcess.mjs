@@ -5,6 +5,8 @@ import {
   calculateItemSubTotal,
   calculateSummary,
   getLocalStorage,
+  setLocalStorage,
+  updateCartCount,
 } from "./utils.mjs";
 
 export default class CheckoutProcess {
@@ -74,9 +76,15 @@ export default class CheckoutProcess {
 
     orderSummary.setItems(packagedItems);
 
-    const externalService = new ExternalServices();
-    const response = await externalService.checkout(orderSummary.toJson());
-    alert(`${response.message}\nOrder Confirmation: ${response.orderId}`);
+    try {
+      const externalService = new ExternalServices();
+      await externalService.checkout(orderSummary.toJson());
+      setLocalStorage("so-cart", []);
+      updateCartCount();
+      location.href = "./success.html";
+    } catch (error) {
+      alert("On no! Something went wrong with your order. Please try again.");
+    }
   }
   calculateSummary() {
     const cartItems = getLocalStorage("so-cart");

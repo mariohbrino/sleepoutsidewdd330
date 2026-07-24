@@ -1,4 +1,3 @@
-import OrderResponse from "./OrderResponse.mjs";
 import { convertToJson } from "./utils.mjs";
 
 const baseURL = import.meta.env.VITE_SERVER_URL;
@@ -25,7 +24,7 @@ export default class ExternalServices {
       },
       body: JSON.stringify(orderSummary),
     });
-    const data = await convertToJson(response);
-    return new OrderResponse(data);
+
+    return await convertToJson(response);
   }
 }

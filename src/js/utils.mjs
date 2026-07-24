@@ -39,10 +39,12 @@ export function setClick(selector, callback) {
 }
 
 export async function convertToJson(res) {
+  const body = await res.text();
+  const jsonResponse = body ? JSON.parse(body) : {};
   if (res.ok) {
-    return res.json();
+    return jsonResponse;
   } else {
-    throw new Error("Bad Response");
+    throw { name: "servicesError", message: jsonResponse };
   }
 }
 
