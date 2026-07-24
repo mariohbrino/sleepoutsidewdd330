@@ -20,54 +20,62 @@
         <h2>Review & Place your Order</h2>
 
         <form id="checkout_form" class="checkout-form" method="POST">
-          <label for="firstname">First Name</label>
-          <input id="firstname" type="text" name="firstname" required />
-          <label for="lastname">Last Name</label>
-          <input id="lastname" type="text" name="lastname" required />
+          <fieldset>
+            <legend>Shipping</legend>
 
-          <label for="street_address">Street Address</label>
-          <input
-            id="street_address"
-            type="text"
-            name="street_address"
-            required
-          />
+            <label for="firstname">First Name</label>
+            <input id="firstname" type="text" name="firstname" required />
 
-          <label for="city">City</label>
-          <input id="city" type="text" name="city" required />
+            <label for="lastname">Last Name</label>
+            <input id="lastname" type="text" name="lastname" required />
 
-          <label for="state">State</label>
-          <input id="state" type="text" name="state" required />
+            <label for="street_address">Street Address</label>
+            <input
+              id="street_address"
+              type="text"
+              name="street_address"
+              required
+            />
 
-          <label for="zip_code">Zip Code</label>
-          <input id="zip_code" type="text" name="zip_code" required />
+            <label for="city">City</label>
+            <input id="city" type="text" name="city" required />
 
-          <label for="credit_cardnumber">Credit Card Number</label>
-          <input
-            id="credit_cardnumber"
-            type="text"
-            name="credit_cardnumber"
-            required
-            value="1234123412341234"
-          />
+            <label for="state">State</label>
+            <input id="state" type="text" name="state" required />
 
-          <label for="expiration_date">Expiration Date</label>
-          <input
-            id="expiration_date"
-            type="month"
-            name="expiration_date"
-            required
-            value="2030-02"
-          />
+            <label for="zip_code">Zip Code</label>
+            <input id="zip_code" type="text" name="zip_code" required />
+          </fieldset>
 
-          <label for="security_code">Security Code</label>
-          <input
-            id="security_code"
-            type="text"
-            name="security_code"
-            required
-            value="123"
-          />
+          <fieldset>
+            <legend>Payment</legend>
+            <label for="credit_cardnumber">Credit Card Number</label>
+            <input
+              id="credit_cardnumber"
+              type="text"
+              name="credit_cardnumber"
+              required
+              value="1234123412341234"
+            />
+
+            <label for="expiration_date">Expiration Date</label>
+            <input
+              id="expiration_date"
+              type="month"
+              name="expiration_date"
+              required
+              value="2030-02"
+            />
+
+            <label for="security_code">Security Code</label>
+            <input
+              id="security_code"
+              type="text"
+              name="security_code"
+              required
+              value="123"
+            />
+          </fieldset>
 
           <button id="checkout_order">Checkout</button>
         </form>

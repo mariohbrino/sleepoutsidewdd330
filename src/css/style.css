@@ -470,5 +470,21 @@ label {
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  gap: 1rem;
+}
+
+.checkout-form fieldset {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid var(--light-grey);
+  padding: 1rem;
+  border-radius: 4px;
   gap: 0.5rem;
+}
+
+.checkout-form legend {
+  font-weight: bold;
+  color: var(--medium-grey);
+  font-size: var(--large-font);
 }
