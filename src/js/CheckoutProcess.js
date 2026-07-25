@@ -1,4 +1,4 @@
-import { checkout } from "./ProductData.mjs";
+import { checkout } from "./ExternalServices.mjs";
 import { alertMessage, getLocalStorage } from "./utils.mjs";
 
 // takes a form element and returns an object where the keys are the name attributes and the values are the form values
@@ -33,24 +33,23 @@ export default class CheckoutProcess {
     // 1. Calculate the subtotal of all items in the cart
     this.itemTotal = this.list.reduce((sum, item) => sum + item.FinalPrice, 0);
 
-    // 2. Calculate shipping (e.g., $10 for the first item, $2 for each subsequent item)
-    if (this.list.length > 0) {
-      this.shipping = 10 + (this.list.length - 1) * 2;
-    } else {
-      this.shipping = 0;
-    }
+    // 2. Calculate shipping: e.g., $10 for the first item, $2 for each additional item
+    this.shipping = this.list.length > 0 ? 10 + (this.list.length - 1) * 2 : 0;
 
     // 3. Calculate tax (e.g., 6%)
-    this.tax = +(this.itemTotal * 0.06).toFixed(2);
+    this.tax = parseFloat((this.itemTotal * 0.06).toFixed(2));
 
-    // 4. Calculate final order total
-    this.orderTotal = +(this.itemTotal + this.shipping + this.tax).toFixed(2);
+    // 4. Calculate the final order total
+    this.orderTotal = parseFloat(
+      (this.itemTotal + this.shipping + this.tax).toFixed(2),
+    );
 
+    // 5. Display the totals in the summary view (if applicable)
     this.displayOrderTotals();
   }
 
   displayOrderTotals() {
-    // Optional: Update the UI elements for subtotal, shipping, tax, and order total if selectors exist
+    // Optional: Select your summary elements from the DOM and update them
     const subtotalEl = document.querySelector(
       `${this.outputSelector} #subtotal`,
     );
@@ -69,11 +68,10 @@ export default class CheckoutProcess {
   }
 
   packageItems(items) {
-    // Convert cart items to the format expected by the API server
     return items.map((item) => ({
       id: item.Id,
-      name: item.Name,
       price: item.FinalPrice,
+      name: item.Name,
       quantity: 1,
     }));
   }
@@ -87,12 +85,10 @@ export default class CheckoutProcess {
     json.items = this.packageItems(this.list);
 
     try {
-      const res = await checkout(json);
-      // Happy Path: Clear cart and redirect
+      await checkout(json);
       localStorage.removeItem(this.key);
       window.location.href = "../checkout/success.html";
     } catch (err) {
-      // Unhappy Path: Display alert
       if (err.name === "servicesError") {
         Object.values(err.message).forEach((msg) => alertMessage(msg));
       } else {
