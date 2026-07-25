@@ -15,6 +15,8 @@
   <body>
     <header id="header" class="divider"></header>
 
+    <!-- Empty div to hold all the error messages -->
+    <div id="error-box"></div>
     <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
@@ -40,7 +42,14 @@
           <input id="state" type="text" name="state" required />
 
           <label for="zip_code">Zip Code</label>
-          <input id="zip_code" type="text" name="zip_code" required />
+          <input
+            id="zip_code"
+            type="text"
+            name="zip_code"
+            required
+            pattern="[0-9]{5}"
+            title="Please enter a 5-digit zip code."
+          />
 
           <label for="credit_cardnumber">Credit Card Number</label>
           <input

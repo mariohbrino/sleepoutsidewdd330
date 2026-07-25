@@ -38,12 +38,43 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
+//Wk04: Individual Activity step:2
 export async function convertToJson(res) {
+  const jsonResponse = await res.json();
   if (res.ok) {
-    return res.json();
+    return jsonResponse;
   } else {
-    throw new Error("Bad Response");
+    throw { name: "serviceError", message: jsonResponse };
   }
+}
+//Wk04: Individual Activity Stretch Goal
+//PART: A
+export function alertMessage(message, scroll = true) {
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+  alert.innerHTML = `<p>${message}</p><span>&times;</span>`;
+  alert.addEventListener("click", function (event) {
+    if (event.target.tagName === "SPAN") {
+      this.remove();
+    }
+  });
+  //Displaying to the checkout page
+  const errorBox = document.getElementById("error-box");
+  if (errorBox) {
+    errorBox.prepend(alert);
+  } else {
+    document.querySelector("main").prepend(alert);
+  }
+  // Scrolling to the top to see
+  if (scroll) {
+    window.scrollTo(0, 0);
+  }
+}
+//PART: B
+//Helper function to clean old alert to prevent endless stacking
+export function removeAllAlerts() {
+  const alerts = document.querySelectorAll(".alert");
+  alerts.forEach((alert) => alert.remove());
 }
 
 export function getParam(param) {
