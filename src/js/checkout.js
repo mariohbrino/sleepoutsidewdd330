@@ -8,8 +8,11 @@ function initializeCheckoutButton(
 ) {
   checkoutOrderButton.addEventListener("click", (event) => {
     event.preventDefault();
-
-    if (!checkoutFormElement.reportValidity()) {
+    //Wk04:Individual Activity step:4
+    const checkStatus = checkoutFormElement.checkValidity();
+    checkoutFormElement.reportValidity();
+    //stop form if not valid
+    if (!checkStatus) {
       return;
     }
 

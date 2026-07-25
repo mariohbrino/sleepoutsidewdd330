@@ -2,9 +2,12 @@ import CartItem from "./CartItem.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 import OrderSummary from "./OrderSummary.mjs";
 import {
+  alertMessage,
   calculateItemSubTotal,
   calculateSummary,
   getLocalStorage,
+  removeAllAlerts,
+  setLocalStorage,
 } from "./utils.mjs";
 
 export default class CheckoutProcess {
@@ -35,7 +38,13 @@ export default class CheckoutProcess {
       new CartItem(item.Id, item.Name, item.FinalPrice, item.Quantity).toJson(),
     );
   }
+
   async checkout(form) {
+    try {
+      //
+    } catch (error) {
+      //
+    }
     const formData = new FormData(form);
     const firstname = formData.get("firstname");
     const lastname = formData.get("lastname");
@@ -73,11 +82,34 @@ export default class CheckoutProcess {
     }
 
     orderSummary.setItems(packagedItems);
-
     const externalService = new ExternalServices();
-    const response = await externalService.checkout(orderSummary.toJson());
-    alert(`${response.message}\nOrder Confirmation: ${response.orderId}`);
+
+    //Wk04:Individual Activity step:3, 5 and strectch goal
+    try {
+      //The happy path when it's successful
+      const response = await externalService.checkout(orderSummary.toJson());
+      // alert(`${response.message}\nOrder Confirmation: ${response.orderId}`);
+      if (response) {
+        setLocalStorage(this.key, []);
+        window.location.assign("/checkout/success.html");
+      }
+    } catch (error) {
+      //The Unhappy Path: If the server rejects the order:Clear out old error messages
+      removeAllAlerts();
+      if (error.message) {
+        // Looping through the detailed errors from server and display them.
+        for (let message in error.message) {
+          alertMessage(error.message[message]);
+        }
+      } else {
+        //displaying generic message when error is unknown.
+        alertMessage(
+          "An unexpected error occurred during checkout. Please check your connection and try again.",
+        );
+      }
+    }
   }
+
   calculateSummary() {
     const cartItems = getLocalStorage("so-cart");
     const { orderTotal, taxesAmount, shippingAmount } = calculateSummary(
