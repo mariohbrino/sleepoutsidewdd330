@@ -91,7 +91,7 @@ export default class CheckoutProcess {
       // alert(`${response.message}\nOrder Confirmation: ${response.orderId}`);
       if (response) {
         setLocalStorage(this.key, []);
-        window.location.assign("/checkout/success.html");
+        window.location.assign("success.html");
       }
     } catch (error) {
       //The Unhappy Path: If the server rejects the order:Clear out old error messages
