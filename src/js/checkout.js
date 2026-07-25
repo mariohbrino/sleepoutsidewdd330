@@ -6,7 +6,7 @@ function initializeCheckoutButton(
   checkoutFormElement,
   checkoutProcess,
 ) {
-  checkoutOrderButton.addEventListener("click", (event) => {
+  checkoutOrderButton.addEventListener("click", async (event) => {
     event.preventDefault();
 
     if (!checkoutFormElement.reportValidity()) {
@@ -15,6 +15,7 @@ function initializeCheckoutButton(
 
     if (checkoutFormElement.zip_code.value) {
       checkoutProcess.calculateSummary();
+      await
       checkoutProcess.checkout(checkoutFormElement);
     } else {
       alert("Zip Code is required");

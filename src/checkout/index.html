@@ -48,16 +48,22 @@
             type="text"
             name="credit_cardnumber"
             required
+            maxlength="16"
+            minlength="16"
+            pattern="[0-9]{16}"
             value="1234123412341234"
           />
 
           <label for="expiration_date">Expiration Date</label>
           <input
             id="expiration_date"
-            type="month"
+            type="text"
             name="expiration_date"
+            placeholder="MM/YY"
             required
-            value="2030-02"
+            pattern="(0[1-9]|1[0-2])\/?([0-9]{2})"
+            title="Enter the date as MM/YY"
+            value="12/30"
           />
 
           <label for="security_code">Security Code</label>
@@ -66,6 +72,9 @@
             type="text"
             name="security_code"
             required
+            maxlength="3"
+            minlength="3"
+            pattern="[0-9]{3}"
             value="123"
           />
 

@@ -2,6 +2,7 @@ import CartItem from "./CartItem.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 import OrderSummary from "./OrderSummary.mjs";
 import {
+  alertMessage,
   calculateItemSubTotal,
   calculateSummary,
   getLocalStorage,
@@ -66,7 +67,7 @@ export default class CheckoutProcess {
     const packagedItems = this.packageItems();
 
     if (packagedItems.length === 0) {
-      alert(
+      alertMessage(
         "Your cart is empty. Please add items to your cart before checking out.",
       );
       return;
@@ -75,27 +76,39 @@ export default class CheckoutProcess {
     orderSummary.setItems(packagedItems);
 
     const externalService = new ExternalServices();
-    const response = await externalService.checkout(orderSummary.toJson());
-    alert(`${response.message}\nOrder Confirmation: ${response.orderId}`);
+    try {
+      await
+      externalService.checkout(orderSummary.toJson());
+      localStorage.removeItem(this.key);
+      window.location.href = "success.html";
+    }
+    catch (err) {
+      const errors =
+        Object.values(err.message);
+      
+      errors.forEach((error) => {
+        alertMessage(error, false);
+      });
+     }
+    }
+    calculateSummary() {
+      const cartItems = getLocalStorage("so-cart");
+      const { orderTotal, taxesAmount, shippingAmount } = calculateSummary(
+        cartItems,
+        this.rates,
+      );
+
+      this.orderTotal = orderTotal;
+      this.taxes = taxesAmount;
+      this.shipping = shippingAmount;
+
+      const taxElement = document.getElementById("tax");
+      const shippingEstimateElement =
+        document.getElementById("shipping-estimate");
+      const orderTotalElement = document.getElementById("order-total");
+
+      taxElement.innerHTML = `$${taxesAmount.toFixed(2)}`;
+      shippingEstimateElement.innerHTML = `$${shippingAmount.toFixed(2)}`;
+      orderTotalElement.innerHTML = `$${orderTotal.toFixed(2)}`;
+    }
   }
-  calculateSummary() {
-    const cartItems = getLocalStorage("so-cart");
-    const { orderTotal, taxesAmount, shippingAmount } = calculateSummary(
-      cartItems,
-      this.rates,
-    );
-
-    this.orderTotal = orderTotal;
-    this.taxes = taxesAmount;
-    this.shipping = shippingAmount;
-
-    const taxElement = document.getElementById("tax");
-    const shippingEstimateElement =
-      document.getElementById("shipping-estimate");
-    const orderTotalElement = document.getElementById("order-total");
-
-    taxElement.innerHTML = `$${taxesAmount.toFixed(2)}`;
-    shippingEstimateElement.innerHTML = `$${shippingAmount.toFixed(2)}`;
-    orderTotalElement.innerHTML = `$${orderTotal.toFixed(2)}`;
-  }
-}

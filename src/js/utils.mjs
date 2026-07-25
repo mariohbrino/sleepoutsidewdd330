@@ -39,10 +39,12 @@ export function setClick(selector, callback) {
 }
 
 export async function convertToJson(res) {
+  const jsonResponse = await res.json();
+  
   if (res.ok) {
-    return res.json();
+    return jsonResponse;
   } else {
-    throw new Error("Bad Response");
+    throw { name: "serviceError", message: jsonResponse,};
   }
 }
 
@@ -182,4 +184,27 @@ export function calculateSummary(cartItems, rates) {
     taxesAmount: taxesCents / 100,
     shippingAmount: shippingCents / 100,
   };
+}
+
+export function alertMessage(message, scroll = true) {
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+
+  alert.innerHTML = `
+    <span>${message}</span>
+    <button class="close-alert">X</button>
+  `;
+
+  alert.addEventListener("click", function (e) {
+    if (e.target.classList.contains("close-alert")) {
+      this.remove();
+    }
+  });
+
+  const main = document.querySelector("main");
+  main.prepend(alert);
+
+  if (scroll) {
+    window.scrollTo(0, 0);
+  }
 }
