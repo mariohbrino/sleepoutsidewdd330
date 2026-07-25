@@ -291,6 +291,45 @@ button {
   line-height: 1.5;
 }
 
+/* Wk04: Individual Activity: Success Page Styling */
+.success-container {
+  text-align: center;
+  padding: 50px 20px;
+  margin: 40px auto;
+  max-width: 600px;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.success-container h2 {
+  color: #2e8b57; /* A nice success green */
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.success-container p {
+  color: #555555;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.success-btn {
+  display: inline-block;
+  background-color: #f0a868; /* Matches your sleep outside theme */
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+}
+
+.success-btn:hover {
+  background-color: #d98e4d;
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;
