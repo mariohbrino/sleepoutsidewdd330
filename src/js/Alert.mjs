@@ -23,18 +23,46 @@ export default class Alert {
     const section = document.createElement("section");
     section.classList.add("alert-list");
 
-    // Looping through each alert in the JSON file
-    alerts.forEach((alert) => {
-      const p = document.createElement("p");
-      p.textContent = alert.message;
-      p.style.backgroundColor = alert.background;
-      p.style.color = alert.color;
+    alerts.forEach((item) => {
+  // Show only once
+  if (localStorage.getItem("so-register-cta")) return;
 
-      // Adding little padding Styles
-      p.style.padding = "10px";
-      p.style.margin = "0";
-      section.appendChild(p);
+  const banner = document.createElement("div");
+  banner.classList.add("register-banner");
+
+  banner.style.backgroundColor = item.background;
+  banner.style.color = item.color;
+
+  banner.innerHTML = `
+    <p>${item.message}</p>
+
+    <div class="register-actions">
+      <button id="register-btn">Register</button>
+      <button id="later-btn">Maybe Later</button>
+    </div>
+  `;
+
+  section.appendChild(banner);
+
+  banner
+    .querySelector("#later-btn")
+    .addEventListener("click", () => {
+      localStorage.setItem("so-register-cta", "dismissed");
+      banner.remove();
     });
+
+  banner
+    .querySelector("#register-btn")
+    .addEventListener("click", () => {
+      console.log("Register button clicked");
+      localStorage.setItem("so-register-cta", "dismissed");
+
+      // Registration feature will be implemented later.
+      alert("Registration coming soon! Stay tuned for updates.");
+
+      banner.remove();
+    });
+});
 
     // Inject into the main element.
     const mainElement = document.querySelector("main");
