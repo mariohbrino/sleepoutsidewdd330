@@ -3,7 +3,8 @@ export default class Alert {
   async init() {
     try {
       // Getting the data from the json file.
-      const response = await fetch("/json/alerts.json");
+      const baseUrl = import.meta.env.BASE_URL;
+      const response = await fetch(`${baseUrl}json/alerts.json`);
       if (response.ok) {
         const alerts = await response.json();
         this.renderAlerts(alerts);
@@ -24,16 +25,16 @@ export default class Alert {
     section.classList.add("alert-list");
 
     alerts.forEach((item) => {
-  // Show only once
-  if (localStorage.getItem("so-register-cta")) return;
+      // Show only once
+      if (localStorage.getItem("so-register-cta")) return;
 
-  const banner = document.createElement("div");
-  banner.classList.add("register-banner");
+      const banner = document.createElement("div");
+      banner.classList.add("register-banner");
 
-  banner.style.backgroundColor = item.background;
-  banner.style.color = item.color;
+      banner.style.backgroundColor = item.background;
+      banner.style.color = item.color;
 
-  banner.innerHTML = `
+      banner.innerHTML = `
     <p>${item.message}</p>
 
     <div class="register-actions">
@@ -42,27 +43,22 @@ export default class Alert {
     </div>
   `;
 
-  section.appendChild(banner);
+      section.appendChild(banner);
 
-  banner
-    .querySelector("#later-btn")
-    .addEventListener("click", () => {
-      localStorage.setItem("so-register-cta", "dismissed");
-      banner.remove();
+      banner.querySelector("#later-btn").addEventListener("click", () => {
+        localStorage.setItem("so-register-cta", "dismissed");
+        banner.remove();
+      });
+
+      banner.querySelector("#register-btn").addEventListener("click", () => {
+        localStorage.setItem("so-register-cta", "dismissed");
+
+        // Registration feature will be implemented later.
+        alert("Registration coming soon! Stay tuned for updates.");
+
+        banner.remove();
+      });
     });
-
-  banner
-    .querySelector("#register-btn")
-    .addEventListener("click", () => {
-      console.log("Register button clicked");
-      localStorage.setItem("so-register-cta", "dismissed");
-
-      // Registration feature will be implemented later.
-      alert("Registration coming soon! Stay tuned for updates.");
-
-      banner.remove();
-    });
-});
 
     // Inject into the main element.
     const mainElement = document.querySelector("main");
